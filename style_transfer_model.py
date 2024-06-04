@@ -24,6 +24,9 @@ loader = transforms.Compose([
 
 def image_loader(image_name):
     image = Image.open(image_name)
+    loader = transforms.Compose([
+        transforms.Resize((128, 128)),  # Adjust the size as needed
+        transforms.ToTensor()])
     image = loader(image).unsqueeze(0)
     return image.to(device, torch.float)
 

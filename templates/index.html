@@ -9,7 +9,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -22,12 +22,44 @@
         }
 
         .container {
+            display: flex;
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .images-container {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        .images-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .images-container img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: border 0.3s ease;
+        }
+
+        .images-container img:hover {
+            border: 2px solid #fff;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
-            max-width: 600px;
             width: 100%;
         }
 
@@ -94,33 +126,70 @@
         footer p {
             font-size: 0.9em;
         }
+
+        .preview img {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Neutral Style Transfer</h1>
-            <p>Upload your images and watch the magic happen!</p>
-        </header>
-        <main>
-            <form action="/upload" method="post" enctype="multipart/form-data">
-                <div class="upload-section">
-                    <div class="upload-box">
-                        <label for="content_image">Content Image:</label>
-                        <input type="file" id="content_image" name="content_image" accept="image/*">
+        <div class="images-container">
+            <h2>Content Images</h2>
+            <img src="{{ url_for('static', filename='girlp.jpg') }}" alt="Content 1" class="selectable" data-type="content">
+            <img src="{{ url_for('static', filename='content2.jpg') }}" alt="Content 2" class="selectable" data-type="content">
+            
+            <h2>Style Images</h2>
+            <img src="{{ url_for('static', filename='stylep.jpg') }}" alt="Style 1" class="selectable" data-type="style">
+            <img src="{{ url_for('static', filename='style2.jpg') }}" alt="Style 2" class="selectable" data-type="style">
+        </div>
+        <div class="form-container">
+            <header>
+                <h1>Neutral Style Transfer</h1><br><br>
+                <p>Upload your images and watch the magic happen!</p><br><br>
+            </header>
+            <main>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="upload-section">
+                        <div class="upload-box">
+                            <label for="content_image">Content Image:</label>
+                            <input type="file" id="content_image" name="content_image" accept="image/*">
+                            <div id="content_image_preview" class="preview"></div>
+                        </div>
+                        <div class="upload-box">
+                            <label for="style_image">Style Image:</label>
+                            <input type="file" id="style_image" name="style_image" accept="image/*">
+                            <div id="style_image_preview" class="preview"></div>
+                        </div>
                     </div>
-                    <div class="upload-box">
-                        <label for="style_image">Style Image:</label>
-                        <input type="file" id="style_image" name="style_image" accept="image/*">
-                    </div>
-                </div>
-                <button type="submit" class="transfer-button">Upload</button>
-            </form>
-        </main>
-        <footer>
-            <p>&copy; 2024 Neutral Style Transfer. All rights reserved.</p>
-        </footer>
+                    <button type="submit" class="transfer-button">Upload</button>
+                </form>
+            </main><br><br>
+            <h3>You can also Download Content and Style Images from Left</h3><br><br><br>
+            <footer>
+                <p>&copy; 2024 Neutral Style Transfer. All rights reserved.</p>
+                <p>Made by Aditya Kurne.</p>
+            </footer>
+        </div>
     </div>
-    <script src="scripts.js"></script>
+    <script>
+        document.querySelectorAll('.selectable').forEach(img => {
+            img.addEventListener('click', function() {
+                const src = img.src;
+                const type = img.getAttribute('data-type');
+                if (type === 'content') {
+                    document.getElementById('content_image_preview').innerHTML = `<img src="${src}" alt="Content Image">`;
+                    document.getElementById('content_image').value = '';
+                } else if (type === 'style') {
+                    document.getElementById('style_image_preview').innerHTML = `<img src="${src}" alt="Style Image">`;
+                    document.getElementById('style_image').value = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
