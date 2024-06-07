@@ -1,6 +1,6 @@
--f https://download.pytorch.org/whl/torch_stable.html
+ --index-url https://download.pytorch.org/whl/cpu
 Flask==3.0.3
 matplotlib==3.8.3
 Pillow==10.3.0
-torch==2.3.0+cpu
-torchvision==0.18.0+cpu
+torch==2.3.0
+torchvision==0.18.0
