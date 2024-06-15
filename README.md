@@ -8,6 +8,7 @@ This repository contains a Flask web application that performs neural style tran
 - Save and display the generated image.
 
 ## Requirements
+- Git
 - Python 3.7+
 - Flask
 - Torch
@@ -18,27 +19,21 @@ This repository contains a Flask web application that performs neural style tran
 
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/yourusername/style-transfer-app.git
-    cd style-transfer-app
+    git clone https://github.com/EMPER0R7/style_transfer_app.git
+    cd style_transfer_app
     ```
 
-2. **Create and activate a virtual environment** (optional but recommended):
-    ```sh
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-
-3. **Install the required packages**:
+2. **Install the required packages**:
     ```sh
     pip install -r requirements.txt
     ```
 
-4. **Run the Flask application**:
+3. **Run the Flask application**:
     ```sh
     python app.py
     ```
 
-5. **Open your browser and go to** `http://127.0.0.1:5000/` **to access the app**.
+4. **Open your browser and go to** `http://127.0.0.1:5000/` **to access the app**.
 
 ## Usage
 
