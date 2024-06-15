@@ -134,9 +134,48 @@
             border: 2px solid #fff;
             border-radius: 5px;
         }
+        .loader{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.75s,visibility 0.75s;
+
+        }
+        .loader-hidden{
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader::after{
+            content: "";
+            width: 75px;
+            height: 75px;
+            border: 15px solid #fff;
+            border-top-color: aqua;
+            border-radius: 50%;
+            animation: loading 0.75s ease infinite;
+        }
+        @keyframes loading {
+            from{
+                transform: rotate(0turn);
+            }
+            to{
+                transform: rotate(1turn);
+            }
+            
+        }
+
+        
+
+
     </style>
 </head>
 <body>
+    <div class="loader"></div>
     <div class="container">
         <div class="images-container">
             <h2>Content Images</h2>
@@ -147,6 +186,7 @@
             <img src="{{ url_for('static', filename='stylep.jpg') }}" alt="Style 1" class="selectable" data-type="style">
             <img src="{{ url_for('static', filename='style2.jpg') }}" alt="Style 2" class="selectable" data-type="style">
         </div>
+       
         <div class="form-container">
             <header>
                 <h1>Neutral Style Transfer</h1><br><br>
@@ -176,20 +216,19 @@
             </footer>
         </div>
     </div>
+
+
     <script>
-        document.querySelectorAll('.selectable').forEach(img => {
-            img.addEventListener('click', function() {
-                const src = img.src;
-                const type = img.getAttribute('data-type');
-                if (type === 'content') {
-                    document.getElementById('content_image_preview').innerHTML = `<img src="${src}" alt="Content Image">`;
-                    document.getElementById('content_image').value = '';
-                } else if (type === 'style') {
-                    document.getElementById('style_image_preview').innerHTML = `<img src="${src}" alt="Style Image">`;
-                    document.getElementById('style_image').value = '';
-                }
-            });
-        });
+      window.addEventListener('load', function() {
+  document.querySelector('.loader').classList.add('loader-hidden');
+  loader.addEventListener("transitionend",()=>{
+    document.body.removeChild("loader")
+  })
+});
     </script>
+    
+    
 </body>
+
+
 </html>
