@@ -1,6 +1,6 @@
 # Neural Style Transfer Flask App
 
-This repository contains a Flask web application that performs neural style transfer using a pre-trained VGG-19 model. The app allows users to upload a content image and a style image, and it generates a new image that combines the content of the first image with the style of the second image.
+This repository contains a Flask web application that performs neural style transfer . The app allows users to upload a content image and a style image, and it generates a new image that combines the content of the first image with the style of the second image.
 
 ## Features
 - Upload content and style images through a web interface.
